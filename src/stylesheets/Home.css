@@ -1,0 +1,22 @@
+.orangeness {
+  background-color: #FF9A3D;
+  height: 510px;
+  bottom: 0;
+}
+.blank-block {
+  background-color: #F6F5F8;
+  height: 170px;
+}
+
+#titleImg {
+  padding-top: 120px;
+}
+
+.startBtn {
+  padding-top: 20px !important;
+  padding-bottom: 20px !important; 
+  background-color: #F6F5F8 !important;
+  color: #FF9A3D !important;
+  font-size: 30px !important;
+  width: 150px !important;
+}

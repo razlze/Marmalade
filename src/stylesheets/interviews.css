@@ -1,0 +1,226 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+
+body {
+  background-color: #F6F5F8;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  height: 100px;
+  background-color: white;
+}
+
+#format-table {
+  height: 75.5%;
+  margin-top: 100px;
+  width: 100%;
+  background-color: #F6F5F8;
+  border: none;
+}
+td {
+  border: 1px solid black;
+}
+#small-cell {
+  width: 33%;
+}
+#big-cell {
+  padding-left: 20px;
+  vertical-align: top;
+}
+
+/*notes part*/
+.notes {
+  background-color: none;
+  border-radius: 8px;
+  height: 510px;
+  width: 820px;
+}
+
+/*white area*/
+.white-area {
+  background-color: white;
+  float: left;
+  width: 370px;
+  height: 70%;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.white-text-area {
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 50px;
+}
+#candidate-name {
+  font-family: 'Open-Sans', sans-serif;
+  font-weight: 500;
+  color: #363636;
+  font-size: 36px;
+}
+.candidate-position {
+  background-color: #9B36FF;
+  padding-right: 25px;
+  padding-left: 25px;
+  border-radius: 40px;
+  border: none;
+}
+#position-name {
+  font-family: 'Open-Sans', sans-serif;
+  color: white;
+  font-weight: 400;
+  font-size: 16px;
+}
+#description-role {
+  color:  #9B36FF;
+  font-size: 12px;
+  text-decoration: underline;
+  font-family: 'Open-sans', sans-serif;
+  line-height: 0px;
+  margin-top: 30px;
+}
+.interview-text {
+  color: #AAAAAA;
+  font-size:14px;
+  font-family: 'Open-sans', sans-serif;
+}
+.time {
+  color:  #9B36FF;
+  font-size: 20px;
+  font-family: 'Open-sans', sans-serif;
+  line-height: 0px;
+}
+
+/*coloured area*/
+.coloured-area {
+  background-color: #9B36FF;
+  float: right;
+  width: 450px;
+  height: 100%;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.coloured-text-area {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: baseline;
+  margin-left: 60px;
+  margin-right: 60px;
+  margin-top: 60px;
+}
+
+.coloured-text-area textarea {
+  border-radius: 8px;
+  outline: none;
+  padding: 15px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.notes-text {
+  color: white;
+  font-family: 'Open-sans', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  margin-top: 0;
+}
+
+#horizontalBottom {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.react-numeric-input {
+  width: 40%;
+  height: 40px;
+  outline: none;
+}
+.react-numeric-input:focus {
+  outline: 0;
+}
+
+
+.react-numeric-input input{
+  width: 100%;
+  height: 100%;
+  font-family: 'Open-sans', sans-serif;
+  outline: none;
+  color: #8B32E4;
+}
+
+#scorebox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 20px;
+  background-color: #8B32E4;
+  border-radius: 8px;
+  width: 40%;
+  font-family: 'Roboto', sans-serif;
+}
+
+#scorebox p {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  margin: 0;
+  color: #FFFFFF;
+
+  margin-right: 20px;
+}
+
+#doneButton {
+  border: none;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 21px;
+  background-color: white;
+  color: #9B36FF;
+  border-radius: 40px;
+  padding: 20px;
+  width: 100%;
+  
+  cursor: pointer;
+  transition: 0.2s;
+}
+#doneButton:hover {
+  background-color: #8B32E4;
+  color: white;
+  filter: drop-shadow(0px 4px 13px rgba(0, 0, 0, 0.1));
+}
+
+#imageContainer {
+  width: 100%;
+  height: 90%;
+  overflow: scroll;
+}
+
+#imageContainer::-webkit-scrollbar {
+  display: none;
+}
+
+.small-candidates {
+  width: 80%;
+  margin-bottom: -50px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.small-candidates:hover {
+  transform: scale(1.03);
+  filter: drop-shadow(0px 3px 10px rgba(0, 0, 0, 0.1));
+}
+
+#interviewPageTitle {
+  font-family: 'Roboto', sans-serif;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #686868;
+}

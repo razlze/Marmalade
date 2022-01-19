@@ -1,0 +1,115 @@
+#navigBar{
+    background-color: white;
+    padding: 0;
+    height: 100px;
+  }
+
+  #left {
+    display: inline-block;
+    align-items: center;
+    width: 100%;
+    margin: 0px;
+  }
+
+  #innerleft {
+    position: relative;
+    display: flex;
+    align-items: center;
+    float: left;
+    margin-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    /*background-color: green;*/
+  }
+
+  #ourlogo {
+    text-align: center;
+    display: inline;
+    float: left;
+  }
+
+  #ourCompanyName {
+    color: #686868;
+    font-size: 14px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+    margin: 0;
+    height: 100%;
+  }
+
+  #companyName {
+    display: inline;
+    float: left;
+    margin-left: 50px;
+  }
+
+  #companyNameText {
+    color: #686868;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+  }
+
+  #codebox {
+    display: inline;
+    float: left;
+    margin-left: 50px;
+    background-color: #FF9A3D;
+    color: white;
+    height: 40px;
+    width: 130px;
+    border-radius: 40px;
+  }
+
+  #code {
+    transform: translateY(35%);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    text-align: center;
+    margin: 0;
+    letter-spacing: 3px;
+  }
+
+  #innerright {
+    display: inline-flex;
+    align-items: center;
+    float: right;
+    padding: 0;
+    height: 100px;
+  }
+
+  #profilebutton {
+    display: inline;
+    float: right;
+    margin-right: 40px;
+    margin-left: 40px;
+    cursor: pointer;
+  }
+
+  .navbutton{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    float: right;
+    height: 100%;
+    width: 130px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    color: #686868;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .navbutton:hover {
+    background-color: #C4C4C4;
+  }
+
+  .active {
+    border-bottom: 5px solid #FF9A3D;
+  }

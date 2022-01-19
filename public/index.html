@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="favicon.ico"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <!--
+      manifest.json provides metadata used when your web app is installed on a
+      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+    -->
+    <link rel="manifest" href="manifest.json" />
+    <!--
+      Notice the use of %PUBLIC_URL% in the tags above.
+      It will be replaced with the URL of the `public` folder during the build.
+      Only files inside the `public` folder can be referenced from the HTML.
+
+      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+      work correctly both with client-side routing and a non-root public URL.
+      Learn how to configure a non-root public URL by running `npm run build`.
+    -->
+    <script src="/__/firebase/8.7.1/firebase-app.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-auth.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-database.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-firestore.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-functions.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-messaging.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-storage.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-analytics.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-remote-config.js"></script>
+    <script src="/__/firebase/8.7.1/firebase-performance.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
+    <title>Marmalade</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    
+    <script>
+      const auth = firebase.auth();
+      const database = firebase.database();
+
+      var colourCounter = 0;
+
+      // string of colours for positions
+      const randColours = ["#369FFF", "#9B36FF", "#30BB3E", "#FF4185", "#943042", "#5D4FF8", "#F84F4F", "#87459E", "#A46E2F", "#756C62", "#4C8339"];
+      
+      //creating preset data
+      //createPresetData();
+      function createPresetData() {
+        const presetCompanyCode = 'IMOKCO';
+        const presetCompanyName = 'The Cool Company';
+        const presetInterviewers = ['Razi Syed', 'Connie Wang', 'Jenna Xiao', 'Victoria Li', 'Harry Potter', 'Ron Weasley', 'Hermione Granger'];
+        var presetInterviewersIds = ['-MeHjzHKnpCyhTMA6to-','-MeHjzHLy0XC6hEUxW-l','-MeHjzHMEcbau61Z5868','-MeHjzHMEcbau61Z5869','-MeHjzHMEcbau61Z586A','-MeHjzHNm5OaRMrgztIj','-MeHjzHNm5OaRMrgztIk'];
+
+        database.ref(presetCompanyCode).set({name: presetCompanyName});
+        console.log('adding the interviewers...');
+        for (let i=0; i<presetInterviewers.length; i++) {
+          database.ref(presetCompanyCode+'/interviewers/'+presetInterviewersIds[i]).set(presetInterviewers[i]);
+          /*
+          let key = database.ref(presetCompanyCode+'/interviewers').push().key;
+          database.ref(presetCompanyCode+'/interviewers/'+key).set(presetInterviewers[i]);
+          presetInterviewersIds[i] = key;
+          */
+        }
+        console.log('declaring presetPositions...');
+        const presetPositions = [
+          //[title, [interviewer1, interviewer2, ...], [candidate1 name, candidate2 name, ...]]
+          ['Marketing Director',[presetInterviewersIds[0],presetInterviewersIds[1],presetInterviewersIds[2]],['Isaac Newton','Marie Curie','Louis Pasteur','Albert Einstein','Galileo Galilei','Charles Darwin','Nikola Tesla']],
+          ['Graphic Designer',[presetInterviewersIds[3],presetInterviewersIds[4],presetInterviewersIds[5]],['Rabindranath Tagore','Yoko Ono','Andy Warhol','Bob Ross','Gloria Vanderbilt','Salvador Dali','Jean-Michel Basquiat','Claude Monet','Jackson Pullock','Georgia O\'Keeffe','Diego Rivera']],
+          ['CMO',[presetInterviewersIds[1],presetInterviewersIds[6]],['Bill Gates','Jeff Bezos','Mark Zuckerberg','Steve Jobs','Elon Musk']],
+          ['Events Coordinator',[presetInterviewersIds[6]],['William Shakespeare','George Orwell','Jane Austen','J.K. Rowling','Ernest Hemingway','Neil Gaiman','John Steinbeck','Mark Twain','Antoine de Saint-Exupéry','Virginia Woolf']],
+          ['IB Coordinator',[presetInterviewersIds[0],presetInterviewersIds[2],presetInterviewersIds[6]],['John Powell','Hans Zimmer','Joe Hisaishi','Lin-Manuel Miranda','Alan Menken','Michael Giacchino','Leonard Bernstein','Christophe Beck']]
+        ];
+
+        console.log('about to do positions...');
+        for (let i = 0; i < presetPositions.length; i++) {
+          let positionKey = database.ref(presetCompanyCode+'/positions').push().key;
+          database.ref(presetCompanyCode+'/positions/'+positionKey).set({
+            title: presetPositions[i][0],
+            colour: randColours[colourCounter],
+            interviewers: presetPositions[i][1]
+          });
+          colourCounter++;
+          console.log('about to do candidates...');
+          for (let j = 0; j < presetPositions[i][2].length; j++) {
+
+            let dayRandom = 12+Math.floor(Math.random()*20); //12 to 31
+            let hourRandom = 9+Math.floor(Math.random()*6); //9 to 15
+            let quarterRandom = Math.floor(Math.random()*3); //0 to 3
+            console.log(dayRandom+' - '+hourRandom+' - '+quarterRandom);
+            let time = `2021-6-${dayRandom}-${hourRandom}-${15*quarterRandom}`;
+            console.log('time is '+time);
+
+            let candidateKey = database.ref(presetCompanyCode+'/positions/'+positionKey+'/candidates').push().key;
+            database.ref(presetCompanyCode+'/positions/'+positionKey+'/candidates/'+candidateKey).set({
+              name: presetPositions[i][2][j],
+              interviewTime: time,
+              notes: '',
+              rating: '',
+              complete: 'false',
+              chosen: 'false'
+            });
+          }
+        }
+      }
+
+      function createPosition(companyId, title, interviewers) { //companyId and title are string, interviewers is array of strings
+        
+        //restart colours
+        if (colourCounter == randColours.length) colourCounter = 0;
+
+        let randomKey = database.ref(companyId+'/positions').push().key;
+        database.ref(companyId+'/positions').child(randomKey).set({
+          title: title,
+          colour: randColours[colourCounter],
+          interviewers: interviewers
+        });
+        colourCounter++;
+      }
+
+      function addCandidate(positionId, name, time) {
+        let interviewTime = time; // TODO: process time into appropriate format...
+
+        let randomKey = database.ref(companyId+'/positions/'+positionId).push().key;
+        database.ref(companyId+'/positions/'+positionId).child(randomKey).set({
+          name: name,
+          interviewTime: interviewTime, 
+          notes: '',
+          rating: '',
+          complete: false,
+          chosen: false
+        });
+      }
+
+      // AUTHENTICATION ******************************************************************
+      function signOut() {
+        firebase.auth().signOut();
+        return console.log('signed out!');
+        //console.log("signed out!");
+      }
+      /*
+      function registerUser() {
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        auth.createUserWithEmailAndPassword(email, password)
+          .then((user) => {
+            //var currentUser = auth.currentUser;
+            //var userId = currentUser.uid;
+            window.location.href = "/positions"; //change later to company code page
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+          });
+        console.log('authTest: passed :D');
+      }
+
+      function loginUser() {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('password').value;
+        auth.signInWithEmailAndPassword(email, password)
+          .then((user) => {
+            //var currentUser = auth.currentUser;
+            //var userID = currentUser.uid;
+            window.location.href = "/positions";
+          })
+          .catch((error) => {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
+          });
+      }
+      */
+    </script>
+    <script src='src/index.js'></script>
+  </body>
+</html>
